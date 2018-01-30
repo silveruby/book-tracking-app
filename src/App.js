@@ -24,7 +24,7 @@ class BooksApp extends React.Component {
    this.setBooks(books)
   })
 
-  updateBook = (book, shelf) => {
+  updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(book => {
       console.log('updatebook')
       this.getBooks()
@@ -41,7 +41,7 @@ class BooksApp extends React.Component {
         { this.state.showSearchPage ?
           <BookSearch /> :
           <MyReads
-            onBookUpdate={this.updateBook}
+            onShelfChange={this.updateShelf}
             books={this.state.books}
           /> }
       </div>

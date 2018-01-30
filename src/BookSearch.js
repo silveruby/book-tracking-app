@@ -15,10 +15,9 @@ class BookSearch extends Component {
     books: []
   }
 
-  updateBook = (book, shelf) => {
+  updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(book => {
-      console.log('updatebook')
-      this.getBooks()
+      console.log('shelf updated')
     })
   }
 
@@ -56,7 +55,7 @@ class BookSearch extends Component {
             <div className="search-books-results">
               <Bookgrid
                 books={this.state.books}
-                onBookUpdate={this.props.onBookUpdate} />
+                onShelfChange={this.updateShelf} />
             </div>
         </div>
     )

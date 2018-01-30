@@ -7,7 +7,7 @@ class Bookgrid extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
     shelf: PropTypes.string.isRequired,
-    onBookUpdate: PropTypes.func.isRequired
+    onShelfChange: PropTypes.func.isRequired
   }
 
   render(){
@@ -19,8 +19,8 @@ class Bookgrid extends Component {
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url( ${book.imageLinks.smallThumbnail} )` }}></div>
                 <div className="book-shelf-changer">
-                  <select defaultValue={ book.shelf }>
-                          onChange={ (event) => this.props.onUpdate(book, event.target.value) }>
+                  <select defaultValue={ book.shelf ? book.shelf : "none" }>
+                          onChange={ (event) => this.props.onShelfChange(book, event.target.value) }>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -29,8 +29,8 @@ class Bookgrid extends Component {
                   </select>
               </div>
               </div>
-              <div className="book-title">{ book.title }</div>
-              <div className="book-authors">{ book.authors.join(', ') }</div>
+              <div className="book-title">{ book.title ? book.title : "Unknown" }</div>
+              <div className="book-authors">{ book.authors ? book.authors.join(', ') : "Anonymous" }</div>
             </div>
           </li>
         ))}

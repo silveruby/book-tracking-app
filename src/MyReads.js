@@ -7,7 +7,7 @@ class MyReads extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onBookUpdate: PropTypes.func.isRequired
+    onShelfChange: PropTypes.func.isRequired
   }
 
   render() {
@@ -28,7 +28,7 @@ class MyReads extends Component {
               <div className="bookshelf-books">
                 <Bookgrid
                   books={currentlyReading}
-                  onBookUpdate={this.props.onBookUpdate} />
+                  onShelfChange={this.props.onShelfChange} />
               </div>
             </div>
             <div className="bookshelf">
@@ -36,7 +36,7 @@ class MyReads extends Component {
               <div className="bookshelf-books">
                 <Bookgrid
                   books={wantToRead}
-                  onBookUpdate={this.props.onBookUpdate} />
+                  onShelfChange={this.props.onShelfChange} />
               </div>
             </div>
             <div className="bookshelf">
@@ -44,7 +44,7 @@ class MyReads extends Component {
               <div className="bookshelf-books">
                 <Bookgrid
                   books={read}
-                  onBookUpdate={this.props.onBookUpdate} />
+                  onShelfChange={this.props.onShelfChange} />
               </div>
             </div>
           </div>
