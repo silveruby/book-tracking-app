@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; // grab component property off react
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 
@@ -6,7 +6,6 @@ class Bookgrid extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    shelf: PropTypes.string.isRequired,
     onShelfChange: PropTypes.func.isRequired
   }
 
