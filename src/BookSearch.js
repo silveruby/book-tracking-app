@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import PropTypes from 'prop-types'
 import Bookgrid from './Bookgrid'
 
 class BookSearch extends Component {
-  // static propTypes = {
-  //   contacts: PropTypes.array.isRequired,
-  //   onDeleteContact: PropTypes.func.isRequired
-  // }
 
   state = {
     query: '',
