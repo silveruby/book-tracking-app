@@ -1,12 +1,36 @@
-import React, { Component } from 'react'; // grab component property off react
+import React, { Component } from 'react';
+import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Bookgrid from './Bookgrid'
 
 class BookSearch extends Component {
   // static propTypes = {
   //   contacts: PropTypes.array.isRequired,
   //   onDeleteContact: PropTypes.func.isRequired
   // }
+
+  state = {
+    query: '',
+    books: []
+  }
+
+  updateBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(book => {
+      console.log('updatebook')
+      this.getBooks()
+    })
+  }
+
+  updateQuery = (query) =>{
+    BooksAPI.search(query).then((books) => {
+        this.setState({books: books})
+    })
+  }
+
+  clearQuery = () => {
+    this.setState({ query: '' })
+  }
 
   render() {
     return (
@@ -22,12 +46,17 @@ class BookSearch extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input
+                  onChange={(event) => this.updateQuery(event.target.value)}
+                  type="text"
+                  placeholder="Search by title or author" />
 
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <Bookgrid
+                books={this.state.books}
+                onBookUpdate={this.props.onBookUpdate} />
             </div>
         </div>
     )
