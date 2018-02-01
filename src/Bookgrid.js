@@ -6,7 +6,14 @@ class Bookgrid extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onShelfChange: PropTypes.func.isRequired
+    onShelfChange: PropTypes.func.isRequired,
+    myReadBooks: PropTypes.array
+  }
+
+  getShelf = (book) => {
+    const bookInShelf = this.props.myReadBooks ?
+        this.props.myReadBooks.find(mybook => {return mybook.id === book.id }) : book
+    return bookInShelf ? bookInShelf.shelf : 'none'
   }
 
   render(){
@@ -18,7 +25,7 @@ class Bookgrid extends Component {
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url( ${book.imageLinks.smallThumbnail} )` }}></div>
                 <div className="book-shelf-changer">
-                  <select defaultValue={ book.shelf ? book.shelf : "none" }>
+                  <select defaultValue={ this.getShelf(book) }
                           onChange={ (event) => this.props.onShelfChange(book, event.target.value) }>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>

@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+import PropTypes from 'prop-types'
 import Bookgrid from './Bookgrid'
 
 class BookSearch extends Component {
 
-  state = {
-    query: '',
-    books: []
+  static propTypes = {
+    onShelfChange: PropTypes.func.isRequired,
+    myReadBooks: PropTypes.array.isRequired
   }
 
-  updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(book => {
-      console.log('shelf updated')
-    })
+  state = {
+    books: []
   }
 
   updateQuery = (query) =>{
     BooksAPI.search(query).then((books) => {
+        console.log(books)
         this.setState({books: books})
     })
   }
@@ -50,7 +50,8 @@ class BookSearch extends Component {
             <div className="search-books-results">
               <Bookgrid
                 books={this.state.books}
-                onShelfChange={this.updateShelf} />
+                myReadBooks={this.props.myReadBooks}
+                onShelfChange={this.props.onShelfChange} />
             </div>
         </div>
     )

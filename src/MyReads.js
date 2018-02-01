@@ -6,15 +6,15 @@ import Bookgrid from './Bookgrid'
 class MyReads extends Component {
 
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    myReadBooks: PropTypes.array.isRequired,
     onShelfChange: PropTypes.func.isRequired
   }
 
   render() {
 
-    const currentlyReading = this.props.books.filter((book) => book.shelf === 'currentlyReading')
-    const wantToRead = this.props.books.filter((book) => book.shelf === 'wantToRead')
-    const read = this.props.books.filter((book) => book.shelf === 'read')
+    const currentlyReading = this.props.myReadBooks.filter((book) => book.shelf === 'currentlyReading')
+    const wantToRead = this.props.myReadBooks.filter((book) => book.shelf === 'wantToRead')
+    const read = this.props.myReadBooks.filter((book) => book.shelf === 'read')
 
   	return (
   		<div className="list-books">
