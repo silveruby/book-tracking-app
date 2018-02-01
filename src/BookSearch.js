@@ -17,14 +17,13 @@ class BookSearch extends Component {
 
   updateQuery = (query) =>{
     BooksAPI.search(query).then((books) => {
-        console.log(books)
         this.setState({books: books})
     })
   }
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-  }
+  // clearQuery = () => {
+  //   this.setState({ query: '' })
+  // }
 
   render() {
     return (
