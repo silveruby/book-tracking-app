@@ -1,8 +1,9 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import MyReads from './MyReads'
 import BookSearch from './BookSearch'
+import NoMatch from './NoMatch'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -32,17 +33,20 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path='/' render={() => (
-          <MyReads
-            onShelfChange={this.updateShelf}
-            myReadBooks={this.state.books} />
-        )}/>
+        <Switch>
+          <Route exact path='/' render={() => (
+            <MyReads
+              onShelfChange={this.updateShelf}
+              myReadBooks={this.state.books} />
+          )}/>
 
-        <Route exact path='/search' render={() => (
-          <BookSearch
-            onShelfChange={this.updateShelf}
-            myReadBooks={this.state.books} />
-        )}/>
+          <Route exact path='/search' render={() => (
+            <BookSearch
+              onShelfChange={this.updateShelf}
+              myReadBooks={this.state.books} />
+          )}/>
+          <Route component={NoMatch}/>
+        </Switch>
       </div>
     )
   }

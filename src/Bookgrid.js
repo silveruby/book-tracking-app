@@ -16,6 +16,10 @@ class Bookgrid extends Component {
     return bookInShelf ? bookInShelf.shelf : 'none'
   }
 
+  getBackgroundImage = (book) => {
+    return book.imageLinks ? book.imageLinks.smallThumbnail : "http://via.placeholder.com/128x193?text=No%20Cover"
+  }
+
   render(){
   	return (
       <ol className="books-grid">
@@ -23,7 +27,7 @@ class Bookgrid extends Component {
           <li key={book.id}>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url( ${book.imageLinks.smallThumbnail} )` }}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url( ${this.getBackgroundImage(book)} )` }}></div>
                 <div className="book-shelf-changer">
                   <select defaultValue={ this.getShelf(book) }
                           onChange={ (event) => this.props.onShelfChange(book, event.target.value) }>

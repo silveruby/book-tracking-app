@@ -9,3 +9,8 @@ The template also provided a backend server for the project. I did not create th
 * download project files
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+
+## Search Terms
+
+Please use search terms provided in SEARCH_TERMS.md file 
